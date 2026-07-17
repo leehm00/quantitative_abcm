@@ -1,0 +1,30 @@
+data:
+  root: "data/testdata"
+  max_files: 2
+  lookback: 60
+  y1_horizon: 11
+  y2_horizon: 21
+  entry_lag: 1
+  stock_limit: 512
+
+model:
+  hidden_dim: 64
+  alpha_dim: 1
+  beta_dim: 12
+  gru_layers: 2
+  dropout: 0.1
+
+train:
+  seed: 42
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  max_steps: 5
+  date_batch_size: 1
+  shuffle_train_dates: true
+  min_stocks: 64
+  cv_folds: 5
+  validation_fold: -1
+  export_valid_dates: 10
+  turnover_lag: 5
+  device: "cuda"
+  output_dir: "outputs/abcm1_daily"
