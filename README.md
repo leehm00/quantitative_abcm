@@ -34,7 +34,7 @@ ABCM（Alpha-Beta Co-mining，Alpha-Beta 协同挖掘）日频量化模型的非
 - PDF 基准损失提高了 beta 稳定性，同时 alpha 排序和收益较低。
 - LightGBM 的 Top 收益高于 ABCM，ABCM h64 的 RankIC 高于 LightGBM。
 
-详细结论见 [ABCM 模型复现结果汇报](docs/abcm_f52_final_report_2026-07-07.md)。
+详细结论见 [ABCM 模型复现结果汇报](docs/abcm_f52_final_report_2026-07-17.md)。
 
 ## 实现内容
 
