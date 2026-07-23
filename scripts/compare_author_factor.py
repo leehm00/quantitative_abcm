@@ -1516,9 +1516,10 @@ def write_report(
         ),
         "",
         (
-            f"同一期作者因子的 Top 5% 组年化近似值为 {_format_pct(author_pdf['top_annualized_approx'])}，"
-            "低于 PDF 的 34.51%。PDF 使用中证全指、正式组合净值和换手控制；本地数值使用 11 日重叠收益的线性年化，"
-            "未扣交易成本。两者的 RankIC 可直接参考程度较高，收益率只能看大致方向。"
+            f"同一期作者因子的 Top 5% 11 日超额年化近似值为 "
+            f"{_format_pct(author_pdf['top_annualized_approx'])}；PDF 报告的 Top 5% 正式组合年化收益为 34.51%。"
+            "PDF 使用中证全指、正式组合净值和换手控制；本地数值使用重叠 11 日标签超额收益进行线性年化，"
+            "未扣交易成本。两项收益指标采用不同算法，只作量级参考，不计算直接差值。"
         ),
         "",
         (
@@ -1562,7 +1563,7 @@ def write_report(
         "成对公共股票池指同一交易日中作者因子与该模型均有输出的股票。",
         "`h32`、`h48`、`h64` 中的数字表示门控循环单元网络隐藏层维度；`h32 PDF 损失`采用 PDF 披露的一比一均方误差（MSE）与决定系数（R²）权重。",
         "",
-        "| 本地模型 | 平均股票数 | 作者 RankIC | 本地 RankIC | RankIC 差值 | 作者 Top 年化近似值 | 本地 Top 年化近似值 |",
+        "| 本地模型 | 平均股票数 | 作者 RankIC | 本地 RankIC | RankIC 差值 | 作者 Top 5% 11 日超额年化近似值 | 本地 Top 5% 11 日超额年化近似值 |",
         "|---|---:|---:|---:|---:|---:|---:|",
     ]
     for coverage_row in coverage.itertuples(index=False):
@@ -1583,7 +1584,9 @@ def write_report(
     lines.extend(
         [
             "",
-            "表中本地结果只使用 2019-01-02 之后且作者因子可对齐的股票。既有总表覆盖 2005 年以后全部五折验证期，日期和股票池不同，两组数值不应互相替代。",
+            "表内作者与本地结果使用相同日期、相同股票池和相同公式，可以直接比较。"
+            "本地结果只使用 2019-01-02 之后且作者因子可对齐的股票；既有五折总表覆盖 2005 年以后全部验证期，"
+            "日期和股票池不同，两组数值不用于判断模型性能变化。",
         ]
     )
 
@@ -1627,7 +1630,7 @@ def write_report(
             "- `top_overlap_summary.csv`：Top 5% 和 Top 10% 持仓重合率。",
             "- `disagreement_group_summary.csv`：一致与分歧股票组的未来收益。",
             "- `residual_rankic_metrics.csv`：作者与本地因子相互剔除后的残差 RankIC。",
-            "- `portfolio_backtest_metrics.csv`：简化 Top 组合的换手率、成本后收益和最大回撤。",
+            "- `portfolio_backtest_metrics.csv`：简化 Top 组合的换手率、成本后复合年化绝对收益和最大回撤。",
             "- `analysis_manifest.json`：输入路径和主要参数。",
             "",
         ]
